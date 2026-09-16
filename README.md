@@ -16,21 +16,21 @@ Official technical documentation, architectural specifications, and module bluep
 Welcome to the technical core of the Foundry suite. Below is the complete index of architectural specifications, module blueprints, and application layers:
 
 ### 🏭 Suite general & overview
-- **[🌐 Foundry suite general overview](./modules/foundry-suite.md)** — A modular, zero-dependency enterprise architecture and component suite designed for Angular 19+ applications.
+- **[🌐 Foundry suite general overview](./modules/foundry-suite-general-readme.md)** — A modular, zero-dependency enterprise architecture and component suite designed for Angular 19+ applications.
 
 ### 🏛️ Core libraries
-- **[🧠 Foundry core](./modules/foundry-core.md)** — The foundational infrastructure and core architecture for Angular enterprise applications.
+- **[🧠 Foundry core](./foundry-suite-foundry-core-readme.md)** — The foundational infrastructure and core architecture for Angular enterprise applications.
 
-- **[🎨 Foundry UI](./modules/foundry-ui.md)** — The visual orchestration layer. A strictly standalone, zero-dependency Angular UI library built for maximum performance and scalable enterprise applications.
+- **[🎨 Foundry UI](./foundry-suite-foundry-ui-readme.md)** — The visual orchestration layer. A strictly standalone, zero-dependency Angular UI library built for maximum performance and scalable enterprise applications.
 
-- **[🧰 Foundry utils](./modules/foundry-utils.md)** — A framework-agnostic TypeScript utility library designed as the data processing core for the **Foundry suite**.
+- **[🧰 Foundry utils](./foundry-suite-foundry-utils-readme.md)** — A framework-agnostic TypeScript utility library designed as the data processing core for the **Foundry suite**.
 
 ### 💻 Product applications & environments
-- **[🚀 Foundry sandbox](./modules/foundry-sandbox.md)** — Official interactive documentation and component showcase for the complete Foundry suite.
+- **[🚀 Foundry sandbox](./foundry-sandbox-readme.md)** — Official interactive documentation and component showcase for the complete Foundry suite.
 
-- **[🛠️ Foundry support hub](./modules/foundry-support-hub.md)** — Official frontend application for the **Foundry support hub**, an **enterprise SaaS & PWA** for support ticket and user management. 
+- **[🛠️ Foundry support hub](./foundry-support-hub-readme.md)** — Official frontend application for the **Foundry support hub**, an **enterprise SaaS & PWA** for support ticket and user management. 
 
-- **[🛠️ Foundry support hub API](./modules/foundry-support-hub-api.md)** — Official collection for interacting with the **Foundry support hub** backend, an enterprise system built on **NestJS, Prisma, and SQLite/LibSQL**.
+- **[🛠️ Foundry support hub API](./foundry-support-hub-api-readme.md)** — Official collection for interacting with the **Foundry support hub** backend, an enterprise system built on **NestJS, Prisma, and SQLite/LibSQL**.
 
 
 ## 📄 License
