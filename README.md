@@ -16,7 +16,7 @@ Official technical documentation, architectural specifications, and module bluep
 Welcome to the technical core of the Foundry suite. Below is the complete index of architectural specifications, module blueprints, and application layers:
 
 ### 🏭 Suite general & overview
-- **[🌐 Foundry suite general overview](./modules/foundry-suite-general-readme.md)** — A modular, zero-dependency enterprise architecture and component suite designed for Angular 19+ applications.
+- **[🌐 Foundry suite general overview](./foundry-suite-general-readme.md)** — A modular, zero-dependency enterprise architecture and component suite designed for Angular 19+ applications.
 
 ### 🏛️ Core libraries
 - **[🧠 Foundry core](./foundry-suite-foundry-core-readme.md)** — The foundational infrastructure and core architecture for Angular enterprise applications.
