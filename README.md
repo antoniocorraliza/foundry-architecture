@@ -1,2 +1,38 @@
-# foundry-architecture
-Official technical documentation and architectural specifications for the Foundry suite. A modular, zero-dependency enterprise architecture and component ecosystem designed for Angular 19+ applications.
+# 📚 Foundry architecture & documentation portal
+
+Official technical documentation, architectural specifications, and module blueprints for the **Foundry suite**. A modular, zero-dependency enterprise architecture and component ecosystem designed for Angular 19+ applications.
+
+[![Angular](https://img.shields.io/badge/Angular-19.2+-DD0031?style=for-the-badge&logo=angular)](#)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-3178C6?style=for-the-badge&logo=typescript)](#)
+[![Zero dependency](https://img.shields.io/badge/Dependencies-0-06b6d4?style=for-the-badge)](#)
+[![License](https://img.shields.io/badge/License-Proprietary-0f172a?style=for-the-badge)](#license)
+
+> **[🚀 Explore the live application](https://foundry-sandbox.vercel.app/)**  
+> *Interactive execution, real-time component evaluation, and live technical specifications.*
+
+
+## 🗂️ Documentation index & modules
+
+Welcome to the technical core of the Foundry suite. Below is the complete index of architectural specifications, module blueprints, and application layers:
+
+### 🏭 Suite general & overview
+- **[🌐 Foundry suite general overview](./modules/foundry-suite.md)** — A modular, zero-dependency enterprise architecture and component suite designed for Angular 19+ applications.
+
+### 🏛️ Core libraries
+- **[🧠 Foundry core](./modules/foundry-core.md)** — The foundational infrastructure and core architecture for Angular enterprise applications.
+
+- **[🎨 Foundry UI](./modules/foundry-ui.md)** — The visual orchestration layer. A strictly standalone, zero-dependency Angular UI library built for maximum performance and scalable enterprise applications.
+
+- **[🧰 Foundry utils](./modules/foundry-utils.md)** — A framework-agnostic TypeScript utility library designed as the data processing core for the **Foundry suite**.
+
+### 💻 Product applications & environments
+- **[🚀 Foundry sandbox](./modules/foundry-sandbox.md)** — Official interactive documentation and component showcase for the complete Foundry suite.
+
+- **[🛠️ Foundry support hub](./modules/foundry-support-hub.md)** — Official frontend application for the **Foundry support hub**, an **enterprise SaaS & PWA** for support ticket and user management. 
+
+- **[🛠️ Foundry support hub API](./modules/foundry-support-hub-api.md)** — Official collection for interacting with the **Foundry support hub** backend, an enterprise system built on **NestJS, Prisma, and SQLite/LibSQL**.
+
+
+## 📄 License
+
+Property of **Antonio Corraliza León** as part of the Foundry development suite. All rights reserved.
