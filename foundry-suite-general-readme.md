@@ -11,6 +11,8 @@ A modular, zero-dependency enterprise architecture and component suite designed 
 
 ### 📦 Official NPM packages
 
+- [**@antoniocorraliza/foundry-cli**](https://www.npmjs.com/package/@antoniocorraliza/foundry-cli)
+
 - [**@antoniocorraliza/foundry-core**](https://www.npmjs.com/package/@antoniocorraliza/foundry-core)
 
 - [**@antoniocorraliza/foundry-ui**](https://www.npmjs.com/package/@antoniocorraliza/foundry-ui)
@@ -160,7 +162,9 @@ export const appConfig: ApplicationConfig = {
         // 3. JWT interceptor: Injects the updated token
         foundryJwtInterceptor,
         // 4. API prefix: Adds the base URL to the outgoing request
-        foundryApiPrefixInterceptor("[https://api.foundry-suite.com](https://api.foundry-suite.com)"),
+        foundryApiPrefixInterceptor(
+          "[https://api.foundry-suite.com](https://api.foundry-suite.com)",
+        ),
       ]),
     ),
     // Provider required for the abstract token refresh class
@@ -177,4 +181,3 @@ export const appConfig: ApplicationConfig = {
 ## 📄 License
 
 Property of **Antonio Corraliza León** as part of the Foundry development suite. All rights reserved.
-
