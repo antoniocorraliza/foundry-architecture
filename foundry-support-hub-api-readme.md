@@ -60,7 +60,13 @@ Transactional email engine for automated communication:
 - **Dynamic HTML templates:** Rich, responsive email templates specifically designed for key platform events: Account Creation (Welcome), Password Resets, Role Updates, Status Changes (Blocks/Bans), Account Deletion, and Public Ticket Alerts.
 - **Embedded assets (CID):** Native injection of brand assets (like the Foundry logo) directly into the email payload using Content-ID (CID), bypassing external image blocking in strict email clients (like Outlook) and guaranteeing immediate visual rendering.
 
+## 🛡️ Architecture & security notes
+
+**Authentication strategy trade-off:**
+The current JWT implementation emits the `accessToken` and `refreshToken` within the JSON response body rather than utilizing `HttpOnly` cookies. This is a deliberate architectural decision to maintain strict decoupling and support cross-site deployment (e.g., hosting the frontend on Vercel and the backend on Clouding.io) without the friction of ITP blocks on third-party cookies in browsers like Safari and Brave.
+
+_Roadmap for enterprise production:_ For a high-security production environment under a unified root domain (e.g., `app.domain.com` and `api.domain.com`), the authentication flow should be migrated to `HttpOnly`, `Secure`, and `SameSite=Strict` cookies to fully mitigate XSS vulnerabilities.
+
 ## 📄 License
 
 Property of **Antonio Corraliza León** as part of the Foundry development suite. All rights reserved.
-

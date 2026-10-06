@@ -81,7 +81,13 @@ Native-like notification and installation capabilities:
 
 - **Hybrid iOS-optimized update strategy**: Platform-aware lifecycle orchestration via precise device fingerprinting. It provides seamless automated updates for Android and desktop platforms while gracefully avoiding WebKit's IPC communication constraints on iOS through background activation and guided manual restarts, ensuring long-term deep-link and push-notification stability.
 
+## 🏗️ Architecture & security notes
+
+**Session management (JWT):**
+Currently, session tokens are managed via `FoundryTokenService` and stored in the browser's `localStorage`/`sessionStorage` (encrypted via custom AES/Hexadecimal utilities to prevent plaintext exposure). This approach was chosen to ensure maximum agility and cross-domain compatibility between the Vercel-hosted client and the external API.
+
+While the refresh-token logic is robustly handled using a Mutex pattern and request queueing via RxJS, migrating to an `HttpOnly` cookie strategy is documented in the roadmap for scenarios requiring strict XSS mitigation under a unified root domain.
+
 ## 📄 License
 
 Property of **Antonio Corraliza León** as part of the Foundry development suite. All rights reserved.
-
