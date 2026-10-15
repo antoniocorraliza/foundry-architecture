@@ -18,9 +18,11 @@ Welcome to the technical core of the Foundry suite. Below is the complete index 
 
 - **[🌐 Foundry suite general overview](./foundry-suite-general-readme.md)** — A modular, zero-dependency enterprise architecture and component suite designed for Angular 19+ applications.
 
-### Developer tools & orchestration
+### ⚙️ Developer tools & architecture governance
 
 - **[⚡ Foundry CLI](./foundry-cli-readme.md)** — The architecture orchestration engine and code generation tool for the Foundry suite.
+
+- **[🔍 Foundry arch scanner](./foundry-arch-scanner-readme.md)** — The static architecture and governance analysis engine for modern Angular applications, built on ts-morph to enforce clean architecture and zero-defect CI/CD pipelines.
 
 ### 🏛️ Core libraries
 

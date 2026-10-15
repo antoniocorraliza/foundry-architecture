@@ -103,7 +103,3 @@ The CLI supports the generation of the following architectural artifacts, each g
 ## ⚖️ License
 
 Property of **Antonio Corraliza León** as part of the Foundry development suite. All rights reserved.
-
-```
-
-```
