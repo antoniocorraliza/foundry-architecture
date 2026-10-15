@@ -7,9 +7,6 @@ An ultra-fast, static enterprise architecture analysis and governance engine for
 [![Angular](https://img.shields.io/badge/Angular-19.2+-DD0031?style=for-the-badge&logo=angular)](#)
 [![License](https://img.shields.io/badge/License-Proprietary-0f172a?style=for-the-badge)](#license)
 
-> **[🚀 Explore the live application](https://foundry-sandbox.vercel.app/)**  
-> _Interactive execution, real-time component evaluation, and live technical specifications for the entire Foundry suite._
-
 ## 🌐 Overview
 
 **Foundry arch scanner** is an enterprise-grade static code analysis engine designed to enforce clean architecture, modern reactivity, strict memory management in RxJS, and prevent performance bottlenecks in Angular applications.
@@ -65,6 +62,82 @@ The scanner evaluates codebases across four specialized analytical blocks:
 
 - **Heavy initialization:** Flags expensive synchronous operations within class property initializers.
 
+## 📊 Architecture scoring engine & quality gates
+
+The **Foundry arch scanner** engine goes beyond simple vulnerability detection; it implements a statistical and deterministic model designed to quantify technical debt and evaluate the structural health of Angular applications. This approach allows Enterprise teams to establish strict, automated, and measurable **quality gates** in their continuous integration (CI/CD) cycles.
+
+The internal mechanics of the _scoring engine_ for calculating architectural metrics are detailed below.
+
+### 1. Violation severity weighting
+
+Each violation detected in the source code is classified and penalized based on its direct impact on system stability, performance, or maintainability.
+
+| Severity     | Weight (Points) | Architectural Criterion                                                                                                        |
+| ------------ | --------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| **CRITICAL** | $10$            | Severe violations (e.g., memory leaks, uncontrolled state mutations, circular dependencies). Potential system blockage.        |
+| **WARNING**  | $3$             | Anti-patterns and excessive coupling. They don't break the app immediately but generate significant short-term technical debt. |
+| **INFO**     | $1$             | Refactoring opportunities and minor deviations from code conventions (e.g., missing use of modern primitives).                 |
+
+### 2. Defect density calculation
+
+To ensure fair evaluations regardless of repository size, the engine calculates a **defect density** for each analytical block.
+
+To prevent a single error from disproportionately penalizing isolated components or very small projects, the engine implements a smoothing threshold (`SMALL_PROJECT_SMOOTHING_THRESHOLD = 15`). This ensures that the minimum divisor of evaluated files is always $15$.
+
+$$
+\text{Defect density} = \frac{\sum \text{Weights}}{\max(\text{Scanned files}, 15)}
+$$
+
+### 3. Block score formula
+
+Each analytical block starts from a base score of 100 perfect points. A penalty proportional to the defect density multiplied by a strict severity factor (`DENSITY_PENALTY_MULTIPLIER = 15`) is applied. The final value is rounded and floored to avoid negative scores.
+
+$$
+\text{Block score} = \max\left(0, \text{round}\left(100 - (\text{Defect density} \times 15)\right)\right)
+$$
+
+### 4. Grade assignment
+
+The obtained numeric score is translated into a standardized letter grade, providing an immediate reading of the project's risk level:
+
+- **A (**$\ge 90$ **points):** Excellent architectural compliance. Clean, reactive, and highly optimized code.
+
+- **B (**$\ge 80$ **points):** Good structural condition with minor observations.
+
+- **C (**$\ge 70$ **points):** Moderate warnings. Technical debt detected that should be scheduled for refactoring.
+
+- **D (**$\ge 60$ **points):** Significant architectural risk. Strongly discouraged practices present in the code.
+
+- **F (**$< 60$ **points):** Critical non-compliance. Project integrity is compromised.
+
+### 5. Overall project score
+
+The overall state of the application is determined by the strict arithmetic mean of the scores obtained in the four analysis domains:
+
+1. RxJS & Memory management
+
+2. Clean architecture & Coupling
+
+3. Angular signals & Modern reactivity
+
+4. Optimization & Performance
+
+$$
+\text{Overall score} = \frac{\text{Score}_{\text{RxJS}} + \text{Score}_{\text{Arch}} + \text{Score}_{\text{Signals}} + \text{Score}_{\text{Perf}}}{4}
+$$
+
+### 🛑 CI/CD Pipeline & Quality Gate Impact
+
+The _scorign engine_ is designed to act as an automated guardian in DevSecOps environments. The engine will automatically block the pipeline (via `process.exit(1)`) if any of the following _quality gate_ failure conditions are met:
+
+- **Critical grade:** The overall project score drops below 60 points (Grade **F**).
+
+- **Critical overflow:** The total number of issues categorized as `CRITICAL` exceeds the maximum limit configured in `foundry-arch-scanner.json` (`maxCriticalIssues`).
+
+- **Warning overflow:** (Optional) If a limit for `maxWarnings` is defined and exceeded.
+
+> **💡 CI/CD tip:** During early adoption phases or legacy code migrations, you can run the scanner with the `--warn-only` flag to generate full analytical reports without interrupting the deployment.
+
 ## 🚀 Installation & usage
 
 The `foundry-arch-scanner` is distributed via NPM and can be executed directly or installed globally/locally within your Angular workspace.
@@ -83,7 +156,7 @@ Install the scanner globally for system-wide availability:
 
 ```bash
 npm install -g @antoniocorraliza/foundry-arch-scanner
-arch-scanner ./src/app
+foundry-arch-scanner ./src/app
 ```
 
 ### Local workspace installation (Dev dependency)
@@ -92,7 +165,7 @@ Install the scanner as a development dependency for CI/CD pipeline integration:
 
 ```bash
 npm install -D @antoniocorraliza/foundry-arch-scanner
-npx arch-scanner ./src/app
+npx foundry-arch-scanner ./src/app
 ```
 
 ### CI/CD pipeline flags
@@ -100,7 +173,7 @@ npx arch-scanner ./src/app
 Use the `--warn-only` flag to generate reports and calculate scores without intentionally blocking the pipeline (bypasses `process.exit(1)` on failure).
 
 ```bash
-npx arch-scanner ./src/app --warn-only
+npx foundry-arch-scanner ./src/app --warn-only
 ```
 
 ## ⚙️ Configuration
