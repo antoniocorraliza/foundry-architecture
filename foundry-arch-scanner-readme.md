@@ -17,7 +17,7 @@ Built on top of `ts-morph`, it is highly optimized for CI/CD pipelines, providin
 
 - **AST bnavigation & performance:** Leverages intelligent `WeakMap`-based caching and `Proxy` pattern acceleration to ensure amortized O(1) performance without V8 heap leaks, enabling lightning-fast scans even in massive enterprise monorepos.
 
-- **Zero-CFG Pragmatism:** Employs a hybrid approach combining local AST navigation and 1-hop type resolution, bypassing heavy Control Flow Graphs (CFG). This strikes the perfect balance between high-speed CI/CD execution and deep diagnostic capabilities.
+- **Zero-CFG pragmatism:** Employs a hybrid approach combining local AST navigation and 1-hop type resolution, bypassing heavy Control Flow Graphs (CFG). This strikes the perfect balance between high-speed CI/CD execution and deep diagnostic capabilities.
 
 - **Enterprise quality gates:** Features a sophisticated statistical scoring engine (`ScoringEngine`) with configurable criticality thresholds capable of automatically blocking pipelines (`process.exit(1)`) upon architectural non-compliance.
 
@@ -27,7 +27,7 @@ Built on top of `ts-morph`, it is highly optimized for CI/CD pipelines, providin
 
 The scanner evaluates codebases across four specialized analytical blocks:
 
-### 1. RxJS & Memory Management
+### 1. RxJS & memory management
 
 - **Infinite stream leak detection:** Audits safe completion operators (e.g., `takeUntilDestroyed`) to prevent memory leaks in infinite observables.
 
@@ -64,7 +64,7 @@ The scanner evaluates codebases across four specialized analytical blocks:
 
 ## 📊 Architecture scoring engine & quality gates
 
-The **Foundry arch scanner** engine goes beyond simple vulnerability detection; it implements a statistical and deterministic model designed to quantify technical debt and evaluate the structural health of Angular applications. This approach allows Enterprise teams to establish strict, automated, and measurable **quality gates** in their continuous integration (CI/CD) cycles.
+The **Foundry arch scanner** engine goes beyond simple vulnerability detection; it implements a statistical and deterministic model designed to quantify technical debt and evaluate the structural health of Angular applications. This approach allows enterprise teams to establish strict, automated, and measurable **quality gates** in their continuous integration (CI/CD) cycles.
 
 The internal mechanics of the _scoring engine_ for calculating architectural metrics are detailed below.
 
@@ -72,7 +72,7 @@ The internal mechanics of the _scoring engine_ for calculating architectural met
 
 Each violation detected in the source code is classified and penalized based on its direct impact on system stability, performance, or maintainability.
 
-| Severity     | Weight (Points) | Architectural Criterion                                                                                                        |
+| Severity     | Weight (Points) | Architectural criterion                                                                                                        |
 | ------------ | --------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | **CRITICAL** | $10$            | Severe violations (e.g., memory leaks, uncontrolled state mutations, circular dependencies). Potential system blockage.        |
 | **WARNING**  | $3$             | Anti-patterns and excessive coupling. They don't break the app immediately but generate significant short-term technical debt. |
@@ -126,7 +126,7 @@ $$
 \text{Overall score} = \frac{\text{Score}_{\text{RxJS}} + \text{Score}_{\text{Arch}} + \text{Score}_{\text{Signals}} + \text{Score}_{\text{Perf}}}{4}
 $$
 
-### 🛑 CI/CD Pipeline & Quality Gate Impact
+### 🛑 CI/CD pipeline & quality gate impact
 
 The _scorign engine_ is designed to act as an automated guardian in DevSecOps environments. The engine will automatically block the pipeline (via `process.exit(1)`) if any of the following _quality gate_ failure conditions are met:
 
@@ -147,7 +147,7 @@ The `foundry-arch-scanner` is distributed via NPM and can be executed directly o
 Execute the scanner directly against your Angular project path without prior installation:
 
 ```bash
-npx @antoniocorraliza/foundry-arch-scanner ./src/app
+npx @antoniocorraliza/foundry-arch-scanner ./
 ```
 
 ### Global installation
@@ -156,7 +156,7 @@ Install the scanner globally for system-wide availability:
 
 ```bash
 npm install -g @antoniocorraliza/foundry-arch-scanner
-foundry-arch-scanner ./src/app
+foundry-arch-scanner ./
 ```
 
 ### Local workspace installation (Dev dependency)
@@ -165,7 +165,7 @@ Install the scanner as a development dependency for CI/CD pipeline integration:
 
 ```bash
 npm install -D @antoniocorraliza/foundry-arch-scanner
-npx foundry-arch-scanner ./src/app
+npx foundry-arch-scanner ./
 ```
 
 ### CI/CD pipeline flags
@@ -173,7 +173,7 @@ npx foundry-arch-scanner ./src/app
 Use the `--warn-only` flag to generate reports and calculate scores without intentionally blocking the pipeline (bypasses `process.exit(1)` on failure).
 
 ```bash
-npx foundry-arch-scanner ./src/app --warn-only
+npx foundry-arch-scanner ./ --warn-only
 ```
 
 ## ⚙️ Configuration
@@ -222,7 +222,7 @@ The configuration schema is divided into two primary domains: **Architecture** a
 
 - **`architecture.uiComponentPaths`**: Target directories monitored for strict UI component governance. Components inside these paths are heavily audited to ensure they implement `ChangeDetectionStrategy.OnPush` and do not contain leaked domain logic.
 
-- **`architecture.maxDependencies` & `architecture.maxComponentLines`**: Coupling thresholds and maximum size constraints designed to prevent the emergence of monolithic "God Components". Exceeding these limits triggers coupling warnings.
+- **`architecture.maxDependencies` & `architecture.maxComponentLines`**: Coupling thresholds and maximum size constraints designed to prevent the emergence of monolithic "God components". Exceeding these limits triggers coupling warnings.
 
 - **`architecture.allowedUiServices`**: An explicit whitelist of acceptable services that can be injected into presentation layers or UI components. Any attempt to inject unauthorized services (e.g., business logic or HTTP repositories) will be flagged as a boundary leak.
 
